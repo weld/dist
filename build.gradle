@@ -87,16 +87,22 @@ repositories {
 }
 
 dependencies {
-    compile dep("org.jboss.weld:weld-core", releaseVersion)
     compile dep("org.jboss.weld:weld-core-impl", releaseVersion)
     compile dep("org.jboss.weld.environment:weld-environment-common", releaseVersion)
     compile dep("org.jboss.weld.se:weld-se-core", releaseVersion)
     if(releaseVersion.startsWith("3")){
+        compile dep("org.jboss.weld.module:weld-ejb", releaseVersion)
+        compile dep("org.jboss.weld.module:weld-jsf", releaseVersion)
+        compile dep("org.jboss.weld.module:weld-jta", releaseVersion)
+        compile dep("org.jboss.weld.module:weld-web", releaseVersion)
+
         compile dep("org.jboss.weld.se:weld-se-shaded", releaseVersion)
         compile dep("org.jboss.weld.servlet:weld-servlet-shaded", releaseVersion)
     } else {
         compile dep("org.jboss.weld.se:weld-se", releaseVersion)
         compile dep("org.jboss.weld.servlet:weld-servlet", releaseVersion)
+
+        compile dep("org.jboss.weld:weld-core", releaseVersion) // this is intentionally removed from 3.x
     }
     compile dep("org.jboss.weld.servlet:weld-servlet-core", releaseVersion)
     // no need for version since compile configuration is transitive by default
