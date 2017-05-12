@@ -87,6 +87,9 @@ repositories {
     maven {
         url "https://repository.jboss.org/nexus/content/repositories/staging"
     }
+    maven {
+        url "https://oss.sonatype.org/content/groups/staging"
+    }
 }
 
 dependencies {
