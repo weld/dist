@@ -113,7 +113,7 @@ dependencies {
     compile dep("org.jboss.weld.servlet:weld-servlet-core", releaseVersion)
     // no need for version since compile configuration is transitive by default
     // listed only because we need to download javadoc and sources artifacts too
-    compile dep("javax.enterprise:cdi-api")
+    compile dep("jakarta.enterprise:jakarta.enterprise.cdi-api")
     compile dep("org.jboss.weld:weld-api")
     compile dep("org.jboss.weld:weld-spi")
 }
@@ -134,7 +134,7 @@ task adjustReadme(type: Exec, dependsOn: copyExamples) {
     workingDir distDir
     commandLine "sed"
     if(!project.hasProperty("readme"))
-        defaultReadmePreface = "Weld is the reference implementation of CDI ".concat(getVersion("cdi-api"))
+        defaultReadmePreface = "Weld is the reference implementation of CDI ".concat(getVersion("jakarta.enterprise.cdi-api"))
     else
         defaultReadmePreface = readme
 
@@ -146,7 +146,7 @@ task copyCdiArtifacts(type: Copy, dependsOn: adjustReadme) {
     from configurations.compile.findAll { dep -> dep.name.contains("cdi") }
     into cdiArtifactsDir
 
-    def cdiVersion = getVersion("cdi-api")
+    def cdiVersion = getVersion("jakarta.enterprise.cdi-api")
     // rename jars - remove version
     rename { String fileName ->
         fileName.replace("-".concat(cdiVersion), "")
@@ -167,7 +167,7 @@ task copyWeldArtifacts(type: Copy, dependsOn: copyCdiArtifacts) {
 
 task extractCdiApiDoc(type: Copy, dependsOn: copyWeldArtifacts) {
 
-   from zipTree(cdiArtifactsDir.concat("/cdi-api-javadoc.jar"))
+   from zipTree(cdiArtifactsDir.concat("/jakarta.enterprise.cdi-api-javadoc.jar"))
    into cdiApiDocsDir
 }
 
