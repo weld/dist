@@ -104,13 +104,30 @@ dependencies {
 
         compile dep("org.jboss.weld.se:weld-se-shaded", releaseVersion)
         compile dep("org.jboss.weld.servlet:weld-servlet-shaded", releaseVersion)
+        compile dep("org.jboss.weld.servlet:weld-servlet-core", releaseVersion)
+    } else if(releaseVersion.startsWith("4")) {
+        compile dep("org.jboss.weld.module:weld-ejb", releaseVersion)
+        compile dep("org.jboss.weld.module:weld-jsf", releaseVersion)
+        compile dep("org.jboss.weld.module:weld-jta", releaseVersion)
+        compile dep("org.jboss.weld.module:weld-web", releaseVersion)
+
+        compile dep("org.jboss.weld.se:weld-se-shaded", releaseVersion)
+        println ""
+        println "---------------------------------------------------------------------------"
+        println "NOTE - Running for Weld 4, some parts (servlet) are temporarily excluded!"
+        println "Please re-enable them as soon as possible."
+        println "---------------------------------------------------------------------------"
+        println ""
+        // TODO temporarily disabled as servlets are not yet Jakarta EE 9 ready
+        // compile dep("org.jboss.weld.servlet:weld-servlet-shaded", releaseVersion)
+        // compile dep("org.jboss.weld.servlet:weld-servlet-core", releaseVersion)
     } else {
         compile dep("org.jboss.weld.se:weld-se", releaseVersion)
         compile dep("org.jboss.weld.servlet:weld-servlet", releaseVersion)
+        compile dep("org.jboss.weld.servlet:weld-servlet-core", releaseVersion)
 
         compile dep("org.jboss.weld:weld-core", releaseVersion) // this is intentionally removed from 3.x
     }
-    compile dep("org.jboss.weld.servlet:weld-servlet-core", releaseVersion)
     // no need for version since compile configuration is transitive by default
     // listed only because we need to download javadoc and sources artifacts too
     compile dep("jakarta.enterprise:jakarta.enterprise.cdi-api")
