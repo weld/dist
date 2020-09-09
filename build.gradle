@@ -192,12 +192,12 @@ task buildDocs(type: Exec, dependsOn: extractCdiApiDoc) {
 
    workingDir weldDir.path.concat("/docs/reference")
    commandLine "mvn"
-   args "clean", "jdocbook:translate", "compile"
+   args "clean", "compile"
 }
 
 task copyDocs(type: Copy, dependsOn: buildDocs){
 
-    from weldDir.path.concat("/docs/reference/target/docbook/publish")
+    from weldDir.path.concat("/docs/reference/target/docbook")
     into docDir
 }
 
