@@ -98,7 +98,7 @@ dependencies {
     implementation dep("org.jboss.weld:weld-core-impl", releaseVersion)
     implementation dep("org.jboss.weld.environment:weld-environment-common", releaseVersion)
     implementation dep("org.jboss.weld.se:weld-se-core", releaseVersion)
-    if(releaseVersion.startsWith("3") || releaseVersion.startsWith("4") || releaseVersion.startsWith("5")){
+    if(releaseVersion.startsWith("3") || releaseVersion.startsWith("4") || releaseVersion.startsWith("5") || releaseVersion.startsWith("6")){
         implementation dep("org.jboss.weld.module:weld-ejb", releaseVersion)
         implementation dep("org.jboss.weld.module:weld-jsf", releaseVersion)
         implementation dep("org.jboss.weld.module:weld-jta", releaseVersion)
